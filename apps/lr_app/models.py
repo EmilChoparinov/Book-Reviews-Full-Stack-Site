@@ -57,6 +57,27 @@ class UsersManager(models.Manager):
             )
         return response
 
+    def validateLoginAttempt(self, data):
+        """
+        Checks given data to see if the user can have access to the account
+
+        Args:
+            data (request.POST): post data from a form
+        
+        Returns:
+            list: a list of responses from the manager, if any response is given the login attempt is not valid
+        """
+        response = []
+        if not data['email']:
+            response.append('Email field cannot be left blank!')
+        elif len(Users.objects.filter(email=data['email'])) == 0:
+            response.append('Email is not registered!')
+        elif not bcrypt.checkpw(data['password'].encode(), Users.objects.get(email=data['email']).password.encode()):
+            response.append('Password is not correct!')
+        if not data['password']:
+            response.append('Password field cannot be left blank!')
+        return response
+
 class Users(models.Model):
     name = models.CharField(max_length=255)
     alias = models.CharField(max_length=255)

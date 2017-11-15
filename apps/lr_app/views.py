@@ -30,4 +30,10 @@ def login(request):
     """
     Route for processing a login of a user who already has an account
     """
-    return HttpResponse('logging in a user..')
+    if request.method == 'POST':
+        response = Users.objects.validateLoginAttempt(request.POST)
+        if len(response) != 0:
+            for message in response:
+                messages.warning(request,message)
+            return redirect('/')
+    return redirect('/books')
