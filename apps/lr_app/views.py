@@ -24,6 +24,7 @@ def register(request):
             for message in response:
                 messages.warning(request, message)
             return redirect('/')
+        request.session['id'] = Users.objects.get(email=request.POST['email']).id
     return redirect('/books')
 
 def login(request):
@@ -36,4 +37,5 @@ def login(request):
             for message in response:
                 messages.warning(request,message)
             return redirect('/')
+        request.session['id'] = Users.objects.get(email=request.POST['email']).id
     return redirect('/books')
