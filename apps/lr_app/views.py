@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
+
+from models import Users
+
+from django.contrib import messages
 
 # Create your views here.
 def default(request):
@@ -14,7 +18,13 @@ def register(request):
     """
     Route for processing a login of a new user who does not have an account
     """
-    return HttpResponse('registering a user..')
+    if request.method == 'POST':
+        response = Users.objects.addUser(request.POST)
+        if len(response) != 0:
+            for message in response:
+                messages.warning(request, message)
+            return redirect('/')
+    return redirect('/books')
 
 def login(request):
     """
