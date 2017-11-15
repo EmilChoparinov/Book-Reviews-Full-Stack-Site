@@ -26,12 +26,12 @@ class UsersManager(models.Manager):
         response = []
         if not data['name']:
             response.append('Name field cannot be left empty!')
-        elif not re.match(r'^[a-zA-Z]+$', data['name']):
+        elif not re.match(r'^[a-zA-Z ]+$', data['name']):
             response.append('Name field can only contain alpha characters!')
         
         if not data['alias']:
             response.append('Alias field cannot be left empty!')
-        elif not re.match(r'^[a-zA-Z]+$', data['alias']):
+        elif not re.match(r'^[a-zA-Z ]+$', data['alias']):
             response.append('Aame field can only contain alpha characters!')
 
         if not data['email']:
