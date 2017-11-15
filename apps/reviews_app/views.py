@@ -3,12 +3,14 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render, HttpResponse
 
+from ..lr_app.models import Users
 # Create your views here.
 def default(request):
     """
     Route for the book review landing page
     """
-    return HttpResponse('default page')
+    user = Users.objects.get(id=request.session['id'])
+    return render(request, 'reviews_app/index.html', {'name': user.name})
 
 def add(request):
     """
