@@ -16,7 +16,7 @@ def add(request):
     """
     Route for adding a book to the landing page
     """
-    return HttpResponse('add a book page')
+    return render(request, 'reviews_app/add.html')
 
 def viewBook(request, id):
     """

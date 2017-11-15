@@ -5,8 +5,6 @@ from django.db import models
 
 import re, bcrypt
 
-from ..reviews_app.models import Reviews, Books
-
 # Create your models here.
 class UsersManager(models.Manager):
     """
@@ -23,7 +21,7 @@ class UsersManager(models.Manager):
             data (request.POST): post data from a form
         
         Returns:
-            list: a list of responses from the manager, if any response is given the data is rejected
+            list: a list of responses from the manager, if any response is given; that data is rejected
         """
         response = []
         if not data['name']:
@@ -81,6 +79,9 @@ class UsersManager(models.Manager):
         return response
 
 class Users(models.Model):
+    """
+    Users class: contains all fields of the table lr_app_users
+    """
     name = models.CharField(max_length=255)
     alias = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
