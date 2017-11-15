@@ -5,6 +5,8 @@ from django.db import models
 
 import re, bcrypt
 
+from ..reviews_app.models import Reviews, Books
+
 # Create your models here.
 class UsersManager(models.Manager):
     """
