@@ -8,7 +8,7 @@ def default(request):
     """
     Route for rendering the login and registration page
     """
-    return HttpResponse('Login and Reg page')
+    return render(request, 'lr_app/lr.html')
 
 def register(request):
     """
