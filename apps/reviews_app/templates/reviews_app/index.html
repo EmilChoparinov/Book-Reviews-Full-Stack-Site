@@ -10,7 +10,7 @@
     <a href="/logout">Logout</a>
     <h2>Recent Book Reviews:</h2>
     {% for review in reviews %}
-        <h2>{{review.book.title}}</h2>
+        <a href="{{review.book.id}}">{{review.book.title}}</a>
         <p>
             Rating: {% for star in review.rating %}
             *

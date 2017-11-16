@@ -39,11 +39,19 @@ def add_book_process(request):
             return redirect('/books/add')
     return redirect('/books')
 
-def viewBook(request, id):
+def viewBook(request, b_id):
     """
     Route for viewing a specific books info
 
     Args:
         id: book id for db query
     """
-    return HttpResponse('specific book page for book ' + str(id))
+    book = Books.objects.get(id=b_id)
+    reviews = book.reviews.order_by('-id')
+    for review in reviews:
+        review.rating = range(review.rating)
+    context = {
+        'book': book,
+        'reviews': reviews
+    }
+    return render(request, 'reviews_app/book.html', context)

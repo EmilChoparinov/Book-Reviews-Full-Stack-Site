@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add Book and Review</title>
+</head>
+
+<body>
+    <h3>{{book.title}}</h3>
+    <p>Author: {{book.author.name}}</p>
+    <h2>Reviews:</h2>
+    {% for review in reviews %}
+    <p>
+        Rating: {% for star in review.rating %} * {% endfor %}
+    </p>
+    <p>
+        {{review.user.name}} says: {{review.review}}
+    </p>
+    <hr> {% endfor %}
+</body>
+
+</html>

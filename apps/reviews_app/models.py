@@ -78,7 +78,7 @@ class Books_ReviewsManager(models.Manager):
 
     def getByLast(self, n):
         """
-        Gets the last three reviews entered in the database
+        Gets the reviews sorted by recent for easy display
         
         Args:
             n (int): number of reviews to return

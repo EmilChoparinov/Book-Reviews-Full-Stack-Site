@@ -5,5 +5,5 @@ urlpatterns = [
     url(r'^$', views.default),
     url(r'^add$', views.add_book),
     url(r'^add/process$', views.add_book_process),
-    url(r'^(?P<id>\d+)$', views.viewBook)
+    url(r'^(?P<b_id>\d+)$', views.viewBook)
 ]
