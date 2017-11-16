@@ -10,6 +10,10 @@
             height: 45vh;
             overflow: auto;
         }
+
+        div::-webkit-scrollbar {
+            display: none;
+        }
     </style>
     <title>User Reviews</title>
 </head>
@@ -30,38 +34,38 @@
         <div class="row">
             <div class="col-sm">
                 <!-- <table> -->
-                    <tr>
-                        <td>
-                            <h2>User alias:</h2>
-                        </td>
-                        <td>
-                            <h2>{{user.alias}}</h2>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h2>Name:</h2>
-                        </td>
-                        <td>
-                            <h2>{{user.name}}</h2>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h2>Email:</h2>
-                        </td>
-                        <td>
-                            <h2>{{user.email}}</h2>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h2>Total Reviews:</h2>
-                        </td>
-                        <td>
-                            <h2>{{reviews.count}}</h2>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>
+                        <h2>User alias:</h2>
+                    </td>
+                    <td>
+                        <h2>{{user.alias}}</h2>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h2>Name:</h2>
+                    </td>
+                    <td>
+                        <h2>{{user.name}}</h2>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h2>Email:</h2>
+                    </td>
+                    <td>
+                        <h2>{{user.email}}</h2>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h2>Total Reviews:</h2>
+                    </td>
+                    <td>
+                        <h2>{{reviews.count}}</h2>
+                    </td>
+                </tr>
                 <!-- </table> -->
             </div>
             <div class="col-sm">
