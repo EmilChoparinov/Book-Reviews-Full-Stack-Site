@@ -32,7 +32,7 @@ def add_book_process(request):
         if len(response) != 0:
             for message in response:
                 messages.warning(request, message)
-        return redirect('/books/add')
+            return redirect('/books/add')
     return redirect('/books')
 
 def viewBook(request, id):
