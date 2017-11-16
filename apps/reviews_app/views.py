@@ -11,15 +11,19 @@ def default(request):
     """
     Route for the book review landing page
     """
+    context ={
+        'user': Users.objects.get(id=request.session['id']),
+        'reviews': Reviews.objects.getByLast(3)
+    }
     user = Users.objects.get(id=request.session['id'])
-    return render(request, 'reviews_app/index.html', {'name': user.name})
+    return render(request, 'reviews_app/index.html', context)
 
 def add_book(request):
     """
     Route for adding a book to the landing page
     """
     context = {
-        'authors': Authors.objects.all()
+        'authors': Authors.objects.all(),
     }
     return render(request, 'reviews_app/add.html', context)
 

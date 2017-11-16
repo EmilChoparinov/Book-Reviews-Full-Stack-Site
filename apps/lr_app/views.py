@@ -41,3 +41,11 @@ def login(request):
             return redirect('/')
         request.session['id'] = Users.objects.get(email=request.POST['email']).id
     return redirect('/books')
+
+def logout(request):
+    """
+    Route for logging out a user; clears their sessions
+    """
+    for key in list(request.session.keys()):
+        del request.session[key]
+    return redirect('/')

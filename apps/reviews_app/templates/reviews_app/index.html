@@ -8,5 +8,17 @@
     <h2>Welcome, {{name}}!</h2>
     <a href="add">Add Book and Review</a>
     <a href="/logout">Logout</a>
+    <h2>Recent Book Reviews:</h2>
+    {% for review in reviews %}
+        <h2>{{review.book.title}}</h2>
+        <p>
+            Rating: {% for star in review.rating %}
+            *
+            {% endfor %}
+        </p>
+        <p>
+            {{review.user.name}} says: {{review.review}}
+        </p>
+    {% endfor %}
 </body>
 </html>

@@ -28,24 +28,19 @@ class Books_ReviewsManager(models.Manager):
         response = []
         if not data['title']:
             response.append('Book must have a title!')
-        if not data['author_s'] and not data['author_t']:
+        if not data['author']:
             response.append('Book must have an author')
         if not data['review']:
             response.append('Book must have at least one review to be added!')
         if 'rating' not in data:
             response.append('Book must have a rating!')   
         if len(response) == 0:
-            author_data = None
-            if not data['author_s']:
-                author_data = data['author_t']
-            else:
-                author_data = data['author_s']
-            if len(Authors.objects.filter(name=author_data)) == 0:
-                Authors.objects.create(name=author_data)
+            if len(Authors.objects.filter(name=data['author'])) == 0:
+                Authors.objects.create(name=data['author'])
 
             this_book = Books.objects.create(
                 title = data['title'],
-                author = Authors.objects.get(name=author_data)
+                author = Authors.objects.get(name=data['author'])
             )
             Reviews.objects.create(
                 review = data['review'],
@@ -80,6 +75,21 @@ class Books_ReviewsManager(models.Manager):
                 book = Books.objects.get(id=b_id)
             )
         return response
+
+    def getByLast(self, n):
+        """
+        Gets the last three reviews entered in the database
+        
+        Args:
+            n (int): number of reviews to return
+        Returns:
+            list: last three reviews
+        """
+        n = Reviews.objects.all().order_by('-id')[:n]
+        for i in n:
+            i.rating = range(i.rating)
+        return n
+
 
 class Authors(models.Model):
     name = models.CharField(max_length=255)

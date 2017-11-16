@@ -23,7 +23,8 @@
             <tr>
                 <td>Choose from the list: </td>
                 <td>
-                    <select name="author_s">
+                    <select name="author">
+                            <option selected disabled hidden>Select Your Author</option>
                         {% for author in authors %}
                             <option value="{{author.name}}">{{author.name}}</option>
                         {% endfor %}
@@ -33,7 +34,7 @@
             <tr>
                 <td>Or add a new author</td>
                 <td>
-                    <input type="text" name="author_t">
+                    <input type="text" name="author">
                 </td>
             </tr>
             <tr>
