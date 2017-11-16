@@ -16,9 +16,10 @@
     <p>
         Rating: {% for star in review.rating %} * {% endfor %}
     </p>
-    <p>
-        {{review.user.name}} says: {{review.review}}
-    </p>
+    <a href="/user/{{review.user.id}}">
+        {{review.user.name}}
+    </a>
+    says: {{review.review}}
     <hr> {% endfor %}
 
     <h4>Add a review: </h4>

@@ -13,7 +13,8 @@ def default(request):
     """
     context ={
         'user': Users.objects.get(id=request.session['id']),
-        'reviews': Reviews.objects.getByLast(3)
+        'reviews': Reviews.objects.getByLast(3),
+        'books': Books.objects.all().order_by('-id')
     }
     user = Users.objects.get(id=request.session['id'])
     return render(request, 'reviews_app/index.html', context)
