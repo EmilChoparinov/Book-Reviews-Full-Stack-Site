@@ -1,23 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap-reboot.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+        crossorigin="anonymous">
+    <style>
+        .constrain {
+            height: 45vh;
+            overflow: auto;
+        }
+    </style>
     <title>User Reviews</title>
 </head>
+
 <body>
-    <!-- user reviews -->
-    <a href="/books">home</a>
-    <a href="/books/add">Add Book and Review</a>
-    <a href="/logout">Logout</a>
-    <h2>User alias: {{user.alias}}</h2>
-    <h3>Name: {{user.name}}</h3>
-    <h3>Email: {{user.email}}</h3>
-    <h3>Total Reviews: {{reviews.count}}</h3>
-    <hr>
-    <h3>Posted Reviews on the following books:</h3>
-    {% for review in reviews %}
-        <p><a href="/books/{{review.id}}">{{review.book.title}}</a></p>
-    {% endfor %}
+    <ul class="nav justify-content-end">
+        <li class="nav-item">
+            <a class="nav-link active" href="/books">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/books/add">Add Book and Review</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+        </li>
+    </ul>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <!-- <table> -->
+                    <tr>
+                        <td>
+                            <h2>User alias:</h2>
+                        </td>
+                        <td>
+                            <h2>{{user.alias}}</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h2>Name:</h2>
+                        </td>
+                        <td>
+                            <h2>{{user.name}}</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h2>Email:</h2>
+                        </td>
+                        <td>
+                            <h2>{{user.email}}</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h2>Total Reviews:</h2>
+                        </td>
+                        <td>
+                            <h2>{{reviews.count}}</h2>
+                        </td>
+                    </tr>
+                <!-- </table> -->
+            </div>
+            <div class="col-sm">
+                <h2>Posted Reviews on the following books:</h2>
+                <div class="constrain">
+                    <table class="table table-hover">
+                        {% for review in reviews %}
+                        <tr>
+                            <td>
+                                <a href="/books/{{review.id}}">{{review.book.title}}</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>

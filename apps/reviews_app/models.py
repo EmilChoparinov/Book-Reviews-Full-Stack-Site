@@ -28,19 +28,24 @@ class Books_ReviewsManager(models.Manager):
         response = []
         if not data['title']:
             response.append('Book must have a title!')
-        if not data['author']:
+        if 'author_s' not in data and not data['author_t']:
             response.append('Book must have an author')
         if not data['review']:
             response.append('Book must have at least one review to be added!')
         if 'rating' not in data:
-            response.append('Book must have a rating!')   
+            response.append('Book must have a rating!')
         if len(response) == 0:
-            if len(Authors.objects.filter(name=data['author'])) == 0:
-                Authors.objects.create(name=data['author'])
+            author_name = None
+            if 'author_s' not in data:
+                author_name = data['author_t']
+            else:
+                author_name = data['author_s']
+            if len(Authors.objects.filter(name=author_name)) == 0:
+                Authors.objects.create(name=author_name)
 
             this_book = Books.objects.create(
                 title = data['title'],
-                author = Authors.objects.get(name=data['author'])
+                author = Authors.objects.get(name=author_name)
             )
             Reviews.objects.create(
                 review = data['review'],

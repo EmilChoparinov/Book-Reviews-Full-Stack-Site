@@ -3,72 +3,93 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap-reboot.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+        crossorigin="anonymous">
+    <style>
+        .borderless td,
+        .borderless th {
+            border: none;
+        }
+    </style>
     <title>Add Book and Review</title>
 </head>
 
 <body>
-    <a href="/logout">Logout</a>
-    <a href="/books">home</a>
-    <h1>Add a New Book Title and a Review:</h1>
-    <form action="add/process" method="post">
-        {% csrf_token %}
-        <table>
-            <tr>
-                <td>Book Title</td>
-                <td>
-                    <input type="text" name="title">
-                </td>
-            </tr>
-            <tr>
-                <td>Author</td>
-            </tr>
-            <tr>
-                <td>Choose from the list: </td>
-                <td>
-                    <select name="author">
-                        <option selected disabled hidden>Select Your Author</option>
-                        {% for author in authors %}
-                        <option value="{{author.name}}">{{author.name}}</option>
-                        {% endfor %}
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Or add a new author</td>
-                <td>
-                    <input type="text" name="author">
-                </td>
-            </tr>
-            <tr>
-                <td>Review:</td>
-                <td>
-                    <textarea name="review" cols="30" rows="10"></textarea>
-                </td>
-            </tr>
-            <tr>
-                <td>Rating:</td>
-                <td>
-                    <select name="rating">
-                        <option selected disabled hidden>Rate The Book</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select> stars
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="submit" value="Add Book and Review">
-                </td>
-            </tr>
-        </table>
-    </form>
-    {% if messages %} {% for message in messages %}
-    <p style="color:red">{{message}}</p>
-    {% endfor %} {% endif %}
+    <ul class="nav justify-content-end">
+        <li class="nav-item">
+            <a class="nav-link active" href="/books">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+        </li>
+    </ul>
+    <div class="container">
+        <div class="row">
+            <div class="col align-self-center">
+                <h1 class="display-4">Add a New Book Title and a Review:</h1>
+                <form action="add/process" method="post">
+                    {% csrf_token %}
+                    <table class="table borderless">
+                        <tr>
+                            <td>Book Title</td>
+                            <td>
+                                <input type="text" name="title" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Author</td>
+                        </tr>
+                        <tr>
+                            <td>Choose from the list: </td>
+                            <td>
+                                <select name="author_s" class="custom-select">
+                                    <option selected disabled hidden>Select Your Author</option>
+                                    {% for author in authors %}
+                                    <option value="{{author.name}}">{{author.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Or add a new author</td>
+                            <td>
+                                <input type="text" name="author_t" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Review:</td>
+                            <td>
+                                <textarea name="review" class="form-control"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Rating:</td>
+                            <td>
+                                <select name="rating" class="custom-select">
+                                    <option selected disabled hidden>Rate The Book</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select> stars
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            </td>
+                            <td>
+                                <input class="btn btn-primary" type="submit" value="Submit">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                {% if messages %} {% for message in messages %}
+                <p style="color:red">{{message}}</p>
+                {% endfor %} {% endif %}
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
