@@ -12,7 +12,9 @@ def default(request):
     """
     Route for rendering the login and registration page
     """
-    return render(request, 'lr_app/lr.html')
+    if 'id' not in request.session:
+        return render(request, 'lr_app/lr.html')
+    return redirect('/books')
 
 def register(request):
     """
