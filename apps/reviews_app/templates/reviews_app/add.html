@@ -7,6 +7,8 @@
 </head>
 
 <body>
+    <a href="/logout">Logout</a>
+    <a href="/books">home</a>
     <h1>Add a New Book Title and a Review:</h1>
     <form action="add/process" method="post">
         {% csrf_token %}
@@ -24,9 +26,9 @@
                 <td>Choose from the list: </td>
                 <td>
                     <select name="author">
-                            <option selected disabled hidden>Select Your Author</option>
+                        <option selected disabled hidden>Select Your Author</option>
                         {% for author in authors %}
-                            <option value="{{author.name}}">{{author.name}}</option>
+                        <option value="{{author.name}}">{{author.name}}</option>
                         {% endfor %}
                     </select>
                 </td>
@@ -53,7 +55,7 @@
                         <option value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
-                    </select>
+                    </select> stars
                 </td>
             </tr>
             <tr>
@@ -63,11 +65,9 @@
             </tr>
         </table>
     </form>
-    {% if messages %}
-        {% for message in messages %}
-            <p style="color:red">{{message}}</p>
-        {% endfor %}
-    {% endif %}
+    {% if messages %} {% for message in messages %}
+    <p style="color:red">{{message}}</p>
+    {% endfor %} {% endif %}
 </body>
 
 </html>

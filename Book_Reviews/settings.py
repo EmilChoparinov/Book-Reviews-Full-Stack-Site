@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'apps.lr_app',
     'apps.reviews_app',
+    'apps.user_dash_app',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

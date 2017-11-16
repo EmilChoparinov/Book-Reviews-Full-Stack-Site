@@ -7,6 +7,8 @@
 </head>
 
 <body>
+    <a href="/logout">Logout</a>
+    <a href="/books">home</a>
     <h3>{{book.title}}</h3>
     <p>Author: {{book.author.name}}</p>
     <h2>Reviews:</h2>
@@ -18,6 +20,28 @@
         {{review.user.name}} says: {{review.review}}
     </p>
     <hr> {% endfor %}
+
+    <h4>Add a review: </h4>
+    <form action="review_process" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="b_id" value="{{book.id}}">
+        <textarea name="review" cols="30" rows="10"></textarea>
+        <p>Rating:
+            <select name="rating">
+                <option selected disabled hidden>Rate The Book</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select> stars</p>
+        <input type="submit" value="Submit Review">
+    </form>
+    {% if messages %}
+        {% for message in messages %}
+            <p style="color:red">{{message}}</p>
+        {% endfor %}
+    {% endif %}
 </body>
 
 </html>

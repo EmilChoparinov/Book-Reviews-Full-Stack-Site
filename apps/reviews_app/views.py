@@ -55,3 +55,14 @@ def viewBook(request, b_id):
         'reviews': reviews
     }
     return render(request, 'reviews_app/book.html', context)
+
+def review_process(request):
+    """
+    Route for processing a review being added to the database
+    """
+    if request.method == 'POST':
+        response = Reviews.objects.addReview(request.POST, request.POST['b_id'], request.session['id'])
+    if len(response) != 0:
+        for message in response:
+            messages.warning(request, message)
+    return redirect('/books/' + str(request.POST['b_id']))

@@ -65,7 +65,7 @@ class Books_ReviewsManager(models.Manager):
         response = []
         if not data['review']:
             response.append('Must have some writing in the review box!')
-        if not data['rating']:
+        if 'rating' not in data:
             response.append('The book must have a rating!')
         if len(response) == 0:
             this_review = Reviews.objects.create(
