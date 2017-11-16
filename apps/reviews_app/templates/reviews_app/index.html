@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap-reboot.css">
     <title>Books Home</title>
 </head>
 
@@ -22,7 +23,7 @@
     {% endfor %}
     <h2>Other Books with Reviews</h2>
     {% for book in books %}
-        <a href="/books/{{book.id}}">{{book.title}}</a>
+        <p><a href="/books/{{book.id}}">{{book.title}}</a></p>
     {% endfor %}
 </body>
 
